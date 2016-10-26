@@ -32,6 +32,16 @@ class ApiSerializer
     }
 
 
+    public function getContentType(string $format)
+    {
+        if (self::FORMAT_XML === $format) {
+            return 'application/xml';
+        }
+
+        return 'application/json';
+    }
+
+
     public function serialize($object, string $format): string
     {
         return $this->getSerializer()->serialize($object, $format);

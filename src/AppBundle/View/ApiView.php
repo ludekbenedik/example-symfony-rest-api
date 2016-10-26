@@ -2,7 +2,6 @@
 
 namespace AppBundle\View;
 
-
 use Symfony\Component\HttpFoundation\Response;
 
 

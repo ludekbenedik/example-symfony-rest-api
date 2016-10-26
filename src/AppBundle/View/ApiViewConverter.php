@@ -22,7 +22,7 @@ class ApiViewConverter
     {
         $format = $this->apiSerializer->guessFormat($request);
         $content = $this->apiSerializer->serialize($apiView->getObject(), $format);
-        $contentType = 'application/json';
+        $contentType = $this->apiSerializer->getContentType($format);
 
         return new Response($content, $apiView->getHttpStatus(), [
             'Content-Type' => $contentType,
