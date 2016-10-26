@@ -4,5 +4,34 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: MyService
+    # EventListener
+    app.event_listener.api_request:
+        class:     AppBundle\EventListener\ApiRequestListener
+        autowire:  true
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.event_listener.api_exception:
+        class:     AppBundle\EventListener\ApiExceptionListener
+        arguments: [ "%kernel.debug%" ]
+        autowire:  true
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.event_listener.api_view:
+        class:     AppBundle\EventListener\ApiViewListener
+        autowire:  true
+        tags:
+            - { name: kernel.event_subscriber }
+
+    # Services
+    app.api_view_converter:
+        class:     AppBundle\View\ApiViewConverter
+        autowire:  true
+
+    app.api_serializer:
+        class:     AppBundle\View\ApiSerializer
+
+    app.api_key_verifier:
+        class:     AppBundle\Security\ApiKeyVerifier
+        arguments: ["%api_key%"]
