@@ -24,6 +24,31 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    # Command
+    app.command.generate_sample_data:
+        class:     AppBundle\Command\GenerateSampleDataCommand
+        autowire:  true
+        tags:
+            - { name: console.command }
+
+    # Controller
+    app.controller.api.comment:
+        class:     AppBundle\Controller\Api\CommentController
+        autowire:  true
+
+    app.controller.api.post:
+        class:     AppBundle\Controller\Api\PostController
+        autowire:  true
+
+    # Handler
+    app.handler.comment:
+        class:     App\Api\Doctrine\Handler\CommentHandler
+        autowire:  true
+
+    app.handler.post:
+        class:     App\Api\Doctrine\Handler\PostHandler
+        autowire:  true
+
     # Services
     app.api_view_converter:
         class:     AppBundle\View\ApiViewConverter
